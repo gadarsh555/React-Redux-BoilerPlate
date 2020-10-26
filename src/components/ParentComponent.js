@@ -1,26 +1,25 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {FlatList,Text} from 'react-native'
-import ListItem from './ListItem' 
+import ChildComponent from './ChildComponent.js' 
 
 class LibraryList extends Component {
     renderItem({item}){
-     return <ListItem library={item} />;
+     return <ChildComponent data={item} />;
     }
     render(){
-       /*  console.log("props : ",this.props.libraries); */
         return (
             <FlatList 
-              data={this.props.libraries}
+              data={this.props.anyReducerName1}
               renderItem={this.renderItem}
-              keyExtractor={library => library.id.toString()}
+              keyExtractor={data => data.id.toString()}
             />
         );
     }
 }
 
 const mapStateToProps = state => {
-return {libraries : state.libraries};
+return {};
 };
 
 export default connect(mapStateToProps)(LibraryList);
